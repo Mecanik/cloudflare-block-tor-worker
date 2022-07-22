@@ -6,7 +6,7 @@ main = "./dist/worker"
 
 type = "javascript"
 zone_id = ""
-account_id = "126d30e4154dd537e1302af434a6a39c"
+account_id = ""
 route = ""
 
 # Whether you use `<NAME>.<SUBDOMAIN>.workers.dev` to
@@ -29,7 +29,7 @@ compatibility_date = "2022-07-20"
 # not inherited
 [[kv_namespaces]]
   binding = "TOR_COMBINED_LIST"
-  id = "f27d34a18f2f4ad191282df5e1226213"
+  id = ""
   
 # Configures a custom build step to be run by Wrangler when building your Worker.
 # Refer to the [custom builds documentation](https://developers.cloudflare.com/workers/cli-wrangler/configuration#build)

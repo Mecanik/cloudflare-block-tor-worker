@@ -1,0 +1,50 @@
+# The name of your Worker. Alphanumeric values and dashes only.
+name = "cloudflare-block-tor-worker"
+
+# The entrypoint/path to the file that will be executed.
+main = "./dist/worker"
+
+type = "javascript"
+zone_id = ""
+account_id = "126d30e4154dd537e1302af434a6a39c"
+route = ""
+
+# Whether you use `<NAME>.<SUBDOMAIN>.workers.dev` to
+# test and deploy your Worker.
+# @default `true`
+workers_dev = true
+
+# A date in the form yyyy-mm-dd, which will be used to determine
+# which version of the Workers runtime is used.
+compatibility_date = "2022-07-20"
+
+# These specify any Workers KV Namespaces you want to
+# access from inside your Worker.
+# To learn more about KV namespaces, refer to:
+# https://developers.cloudflare.com/workers/learning/how-kv-works
+# @default `[]`
+# @param {string} binding The binding name used to refer to the KV namespace
+# @param {string} id The ID of the KV namespace at the edge
+# @param {string} preview_id The ID of the KV namespace used during `wrangler dev`
+# not inherited
+[[kv_namespaces]]
+  binding = "TOR_COMBINED_LIST"
+  id = "f27d34a18f2f4ad191282df5e1226213"
+  
+# Configures a custom build step to be run by Wrangler when building your Worker.
+# Refer to the [custom builds documentation](https://developers.cloudflare.com/workers/cli-wrangler/configuration#build)
+# for more details.
+# @default {}
+[build]
+  # The command used to build your Worker. On Linux and macOS, the command is executed in the `sh` shell and the `cmd` shell for Windows.
+  # The `&&` and `||` shell operators may be used.
+  command = "npm install && npm run build"
+
+[build.upload]
+format = "service-worker"
+
+# Lets you call Workers periodically, much like a cron job.
+# More details: https://developers.cloudflare.com/workers/platform/cron-triggers
+# @default `{crons:[]}`
+[triggers]
+crons = ["0 */1 * * *"]
